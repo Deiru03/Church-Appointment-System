@@ -175,6 +175,7 @@ if ($conn->connect_error) {
                     <thead class="thead-dark">
                         <tr>
                             <th>Report Type</th>
+                            <th>Log ID</th>
                             <th>Full Name</th>
                             <th>Gender</th>
                             <th>Date of Birth</th>
@@ -182,8 +183,7 @@ if ($conn->connect_error) {
                             <th>Report Date</th>
                             <th>Contact</th>
                             <th>Picture</th>
-                            <th>Log ID</th>
-                            <th>Actions</th>
+                            <!-- <th>Actions</th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -197,6 +197,7 @@ if ($conn->connect_error) {
                         foreach ($baptismalReports as $report) {
                             echo '<tr>';
                             echo '<td>Baptismal Report</td>';
+                            echo '<td>' . htmlspecialchars($report['log_id']) . '</td>';
                             echo '<td>' . htmlspecialchars($report['fullname']) . '</td>';
                             echo '<td>' . htmlspecialchars($report['gender']) . '</td>';
                             echo '<td>' . htmlspecialchars($report['dateofbirth']) . '</td>';
@@ -204,8 +205,7 @@ if ($conn->connect_error) {
                             echo '<td>' . date('M d, Y h:i A', strtotime($report['date'])) . '</td>';
                             echo '<td>' . htmlspecialchars($report['phone']) . '</td>';
                             echo '<td><img src="' . htmlspecialchars($report['picture']) . '" alt="Picture" style="max-width:50px;" class="img-thumbnail"></td>';
-                            echo '<td>' . htmlspecialchars($report['log_id']) . '</td>';
-                            echo '<td><a href="#" class="btn btn-sm btn-info">View</a> <a href="#" class="btn btn-sm btn-success">Download</a></td>';
+                            // echo '<td><a href="#" class="btn btn-sm btn-info">View</a> <a href="#" class="btn btn-sm btn-success">Download</a></td>';
                             echo '</tr>';
                         }
                         ?>

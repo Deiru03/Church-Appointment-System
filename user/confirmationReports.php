@@ -175,6 +175,7 @@ if ($conn->connect_error) {
                         <table class="table table-hover table-bordered">
                             <thead class="thead-dark">
                                 <tr>
+                                    <th>Log ID</th>
                                     <th>Confirmation Type</th>
                                     <th>Full Name</th>
                                     <th>Gender</th>
@@ -183,7 +184,6 @@ if ($conn->connect_error) {
                                     <th>Confirmation Date</th>
                                     <th>Contact</th>
                                     <th>Picture</th>
-                                    <th>Log ID</th>
                                     <!-- <th>Actions</th> -->
                                 </tr>
                             </thead>
@@ -195,6 +195,7 @@ if ($conn->connect_error) {
                                 while ($report = mysqli_fetch_assoc($query)) {
                                     echo '<tr>';
                                     // Determine report type based on a status field ('accepted' or 'declined')
+                                    echo '<td>' . htmlspecialchars($report['log_id']) . '</td>';
                                     $confirmationType = ($report['bapstatus'] === 1) ? 'Accepted Confirmation' : 'Declined Confirmation';
                                     echo '<td>' . htmlspecialchars($confirmationType) . '</td>';
                                     echo '<td>' . htmlspecialchars($report['fullname']) . '</td>';
@@ -204,7 +205,6 @@ if ($conn->connect_error) {
                                     echo '<td>' . date('M d, Y h:i A', strtotime($report['date'])) . '</td>';
                                     echo '<td>' . htmlspecialchars($report['phone']) . '</td>';
                                     echo '<td><img src="' . htmlspecialchars($report['picture']) . '" alt="Picture" style="max-width:50px;" class="img-thumbnail"></td>';
-                                    echo '<td>' . htmlspecialchars($report['log_id']) . '</td>';
                                     // echo '<td>';
                                     // echo '<a href="view_confirmation.php?log_id=' . urlencode($report['log_id']) . '" class="btn btn-sm btn-info">View</a>';
                                     // // Allow download link only for accepted confirmations, matching aconfirmation.php logic.
