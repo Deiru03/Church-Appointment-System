@@ -1,0 +1,296 @@
+[
+    {
+        "log_id": "log_6761beb429f62",
+        "groom": {
+            "name": "boy1",
+            "age": "22a",
+            "birthplace": "sdasdasd",
+            "civil_status": "adasd",
+            "residence": "adad",
+            "father": "asdas",
+            "mother": "dasda",
+            "baptism": "asdas",
+            "confirmation": "dasda",
+            "witnesses": "dasdasda\r\nasdad"
+        },
+        "bride": {
+            "name": "girl1",
+            "age": "31 dec 9 2024",
+            "birthplace": "manila",
+            "civil_status": "asdasd",
+            "residence": "asdasd",
+            "father": "asda",
+            "mother": "asdasd",
+            "baptism": "asdasd",
+            "confirmation": "asdasd",
+            "witnesses": "aadasda"
+        },
+        "marriage": {
+            "sched": "2025-01-03",
+            "schedtime": "14:07",
+            "phone": "09076011089"
+        },
+        "picture": "img\/picture\/20241218021100_picture.jpg",
+        "proofpayment": "img\/picture\/20241218021100_proofpayment.png",
+        "statuspayment": "0",
+        "bapstatus": "1",
+        "uname": "sikatpinoy6@gmail.com",
+        "br": "img\/picture\/20241218021100_br.png",
+        "bc": "img\/picture\/20241218021100_bc.png",
+        "wsphbb": "img\/picture\/20241218021100_wsphbb.png",
+        "wsphbg": "img\/picture\/20241218021100_wsphbg.png",
+        "date": "2024-12-18 02:11:00"
+    },
+    {
+        "log_id": "log_6761beb429f62c",
+        "groom": {
+            "name": "boy1",
+            "age": "22a",
+            "birthplace": "sdasdasd",
+            "civil_status": "adasd",
+            "residence": "adad",
+            "father": "asdas",
+            "mother": "dasda",
+            "baptism": "asdas",
+            "confirmation": "dasda",
+            "witnesses": "dasdasda\r\nasdad"
+        },
+        "bride": {
+            "name": "girl1",
+            "age": "31 dec 9 2024",
+            "birthplace": "manila",
+            "civil_status": "asdasd",
+            "residence": "asdasd",
+            "father": "asda",
+            "mother": "asdasd",
+            "baptism": "asdasd",
+            "confirmation": "asdasd",
+            "witnesses": "aadasda"
+        },
+        "marriage": {
+            "sched": "2025-01-03",
+            "schedtime": "14:07",
+            "phone": "09076011089"
+        },
+        "picture": "img\/picture\/20241218021100_picture.jpg",
+        "proofpayment": "img\/picture\/20241218021100_proofpayment.png",
+        "statuspayment": "0",
+        "bapstatus": "1",
+        "uname": "sikatpinoy6@gmail.com",
+        "br": "img\/picture\/20241218021100_br.png",
+        "bc": "img\/picture\/20241218021100_bc.png",
+        "wsphbb": "img\/picture\/20241218021100_wsphbb.png",
+        "wsphbg": "img\/picture\/20241218021100_wsphbg.png",
+        "date": "2024-12-18 02:11:00"
+    },
+    {
+        "log_id": "log_6761c015037da",
+        "groom": {
+            "name": "boy1",
+            "age": "22a",
+            "birthplace": "sdasdasd",
+            "civil_status": "adasd",
+            "residence": "adad",
+            "father": "asdas",
+            "mother": "dasda",
+            "baptism": "asdas",
+            "confirmation": "dasda",
+            "witnesses": "dasdasda\r\nasdad"
+        },
+        "bride": {
+            "name": "girl1",
+            "age": "31 dec 9 2024",
+            "birthplace": "manila",
+            "civil_status": "asdasd",
+            "residence": "asdasd",
+            "father": "asda",
+            "mother": "asdasd",
+            "baptism": "asdasd",
+            "confirmation": "asdasd",
+            "witnesses": "aadasda"
+        },
+        "marriage": {
+            "sched": "2025-01-06",
+            "schedtime": "14:07",
+            "phone": "09076011089"
+        },
+        "picture": "img\/picture\/20241218021653_picture.jpg",
+        "proofpayment": "img\/picture\/20241218021653_proofpayment.png",
+        "statuspayment": "0",
+        "bapstatus": "0",
+        "uname": "sikatpinoy6@gmail.com",
+        "br": "img\/picture\/20241218021653_br.png",
+        "bc": "img\/picture\/20241218021653_bc.png",
+        "wsphbb": "img\/picture\/20241218021653_wsphbb.png",
+        "wsphbg": "img\/picture\/20241218021653_wsphbg.png",
+        "date": "2024-12-18 02:16:53"
+    },
+    {
+        "log_id": "log_6761c03e6ee63",
+        "groom": {
+            "name": "boy1",
+            "age": "22a",
+            "birthplace": "sdasdasd",
+            "civil_status": "adasd",
+            "residence": "adad",
+            "father": "asdas",
+            "mother": "dasda",
+            "baptism": "asdas",
+            "confirmation": "dasda",
+            "witnesses": "dasdasda\r\nasdad"
+        },
+        "bride": {
+            "name": "girl1",
+            "age": "31 dec 9 2024",
+            "birthplace": "manila",
+            "civil_status": "asdasd",
+            "residence": "asdasd",
+            "father": "asda",
+            "mother": "asdasd",
+            "baptism": "asdasd",
+            "confirmation": "asdasd",
+            "witnesses": "aadasda"
+        },
+        "marriage": {
+            "sched": "2025-01-09",
+            "schedtime": "14:07",
+            "phone": "09076011089"
+        },
+        "picture": "img\/picture\/20241218021734_picture.jpg",
+        "proofpayment": "img\/picture\/20241218021734_proofpayment.png",
+        "statuspayment": "0",
+        "bapstatus": "0",
+        "uname": "sikatpinoy6@gmail.com",
+        "br": "img\/picture\/20241218021734_br.png",
+        "bc": "img\/picture\/20241218021734_bc.png",
+        "wsphbb": "img\/picture\/20241218021734_wsphbb.png",
+        "wsphbg": "img\/picture\/20241218021734_wsphbg.png",
+        "date": "2024-12-18 02:17:34"
+    },
+    {
+        "log_id": "log_6761c0aa6ad78",
+        "groom": {
+            "name": "boy1",
+            "age": "22a",
+            "birthplace": "sdasdasd",
+            "civil_status": "adasd",
+            "residence": "adad",
+            "father": "asdas",
+            "mother": "dasda",
+            "baptism": "asdas",
+            "confirmation": "dasda",
+            "witnesses": "dasdasda\r\nasdad"
+        },
+        "bride": {
+            "name": "girl1",
+            "age": "31 dec 9 2024",
+            "birthplace": "manila",
+            "civil_status": "asdasd",
+            "residence": "asdasd",
+            "father": "asda",
+            "mother": "asdasd",
+            "baptism": "asdasd",
+            "confirmation": "asdasd",
+            "witnesses": "aadasda"
+        },
+        "marriage": {
+            "sched": "2025-01-09",
+            "schedtime": "14:07",
+            "phone": "09076011089"
+        },
+        "picture": "img\/picture\/20241218021922_picture.jpg",
+        "proofpayment": "img\/picture\/20241218021922_proofpayment.png",
+        "statuspayment": "0",
+        "bapstatus": "0",
+        "uname": "sikatpinoy6@gmail.com",
+        "br": "img\/picture\/20241218021922_br.png",
+        "bc": "img\/picture\/20241218021922_bc.png",
+        "wsphbb": "img\/picture\/20241218021922_wsphbb.png",
+        "wsphbg": "img\/picture\/20241218021922_wsphbg.png",
+        "date": "2024-12-18 02:19:22"
+    },
+    {
+        "log_id": "log_67768dd3618a5",
+        "groom": {
+            "name": "boy1",
+            "age": "Dec 1 1988",
+            "birthplace": "manila",
+            "civil_status": "single",
+            "residence": "manil",
+            "father": "boyf",
+            "mother": "boym",
+            "baptism": "baptism1111",
+            "confirmation": "conformation111",
+            "witnesses": "ako ikaw sila"
+        },
+        "bride": {
+            "name": "girl1",
+            "age": "dec 9 2024",
+            "birthplace": "manila",
+            "civil_status": "single",
+            "residence": "manil",
+            "father": "fatherg",
+            "mother": "motherg",
+            "baptism": "baptism222222",
+            "confirmation": "confirmation222222",
+            "witnesses": "sila din at ikaw at ako"
+        },
+        "marriage": {
+            "sched": "2025-01-03",
+            "schedtime": "20:02",
+            "phone": "09076011089"
+        },
+        "picture": "img\/picture\/20250102210003_picture.png",
+        "proofpayment": "img\/picture\/20250102210003_proofpayment.png",
+        "statuspayment": "0",
+        "bapstatus": "0",
+        "uname": "fakeg@mail.com",
+        "br": "img\/picture\/20250102210003_br.png",
+        "bc": "img\/picture\/20250102210003_bc.png",
+        "wsphbb": "img\/picture\/20250102210003_wsphbb.png",
+        "wsphbg": "img\/picture\/20250102210003_wsphbg.png",
+        "date": "2025-01-02 21:00:03"
+    },
+    {
+        "log_id": "log_67768dd363418a5",
+        "groom": {
+            "name": "boy1",
+            "age": "Dec 1 1988",
+            "birthplace": "manila",
+            "civil_status": "single",
+            "residence": "manil",
+            "father": "boyf",
+            "mother": "boym",
+            "baptism": "baptism1111",
+            "confirmation": "conformation111",
+            "witnesses": "ako ikaw sila"
+        },
+        "bride": {
+            "name": "girl1",
+            "age": "dec 9 2024",
+            "birthplace": "manila",
+            "civil_status": "single",
+            "residence": "manil",
+            "father": "fatherg",
+            "mother": "motherg",
+            "baptism": "baptism222222",
+            "confirmation": "confirmation222222",
+            "witnesses": "sila din at ikaw at ako"
+        },
+        "marriage": {
+            "sched": "2025-01-03",
+            "schedtime": "20:02",
+            "phone": "09076011089"
+        },
+        "picture": "img\/picture\/20250102210003_picture.png",
+        "proofpayment": "img\/picture\/20250102210003_proofpayment.png",
+        "statuspayment": "0",
+        "bapstatus": "0",
+        "uname": "fakeg@mail.com",
+        "br": "img\/picture\/20250102210003_br.png",
+        "bc": "img\/picture\/20250102210003_bc.png",
+        "wsphbb": "img\/picture\/20250102210003_wsphbb.png",
+        "wsphbg": "img\/picture\/20250102210003_wsphbg.png",
+        "date": "2025-01-02 21:00:03"
+    }
+]

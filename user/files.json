@@ -1,0 +1,28 @@
+[
+    {
+        "log_id": "R8YJVB",
+        "fullname": "dasdasd",
+        "dateofbirth": "2024-09-19",
+        "phone": "adasdas",
+        "gender": "male",
+        "address": "asdasdad",
+        "proofpayment": "",
+        "statuspayment": "0",
+        "bapstatus": "0",
+        "fathersname": "sdasdasdasdas",
+        "father_occupation": "dasdasd",
+        "mothersname": "asdas",
+        "mother_occupation": "asdasd",
+        "godparents": [
+            "asdasd",
+            "dasasdas",
+            "dasda",
+            "asdas",
+            "sdasd"
+        ],
+        "picture": "img\/picture\/20240927005335.png",
+        "uname": "juan@gmail.com",
+        "sched": "2024-09-09T00:48",
+        "date": "2024-09-27 00:53:35"
+    }
+]
