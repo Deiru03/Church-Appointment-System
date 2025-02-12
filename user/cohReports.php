@@ -167,59 +167,64 @@ if ($conn->connect_error) {
         <div class="content-wrapper" >
             <div class="page-title">
             <div class="card-header text-white">
-                <h1 class="mb-0">Wedding History Reports</h1>
+                <h1 class="mb-0">Car or House Baptismal Reports</h1>
             </div>
-            <div class="card-body">
-                <p class="mb-3">This page displays a list of wedding reports that have been approved or declined.</p>
+
+            <p class="mb-3">This page displays a list of wedding reports that have been approved or declined.</p>
+            
+            <!-- Add a print button -->
+            <div style="text-align: right; margin-bottom: 10px;" class="no-print">
+                <button onclick="openPrintWindow()" class="btn btn-primary">Print Report</button>
+            </div>
+
+            <!-- Wrap the table in an element with an ID we can reference -->
+            <div id="printableContent">
                 <div class="table-responsive">
-                        <table class="table table-hover table-bordered">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Report Type</th>
-                                    <th>May Ari</th>
-                                    <th>Date Application</th>
-                                    <th>Scheduled Date</th>
-                                    <th>Contact Number</th>
-                                    <th>Proof Payment</th>
-                                    <th>Baptism Status</th>
-                                    <!-- <th>Status</th> -->
-                                    <!-- <th>Action</th> -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                    // Fetch wedding reports from the database where bapstatus is 1 (approved) or 2 (declined)
-                                    $query = mysqli_query($conn, "SELECT * FROM coh WHERE bapstatus IN ('1', '2')");
-                                    while ($report = mysqli_fetch_assoc($query)) {
-                                        echo '<tr>';
-                                        echo '<td>Car/House Report</td>';
-                                        echo '<td>' . htmlspecialchars($report['may_ari']) . '</td>';
-                                        echo '<td>' . date('M d, Y h:i A', strtotime($report['date'])) . '</td>';
-                                        echo '<td>' . date('M d, Y h:i A', strtotime($report['petsa_ng_pagbabasbas'])) . '</td>';
-                                        echo '<td>' . htmlspecialchars($report['contact_number_owner']) . '</td>';
-                                        // echo '<td>' . htmlspecialchars($report['']) . '</td>';
-                                        // echo '<td>' . htmlspecialchars($report['marriage_phone']) . '</td>';
-                                        if (!empty($report['picture'])) {
-                                            echo '<td><img src="' . htmlspecialchars($report['proofpayment']) . '" alt="Picture" /></td>';
-                                        } else {
-                                            echo '<td></td>';
-                                        }
-                                        // echo '<td>' . htmlspecialchars($report['log_id']) . '</td>';
-                                        
-                                        // Map bapstatus to a badge label
-                                        if ($report['bapstatus'] == '1') {
-                                            $statusLabel = '<label class="badge badge-success">APPROVED</label>';
-                                        } elseif ($report['bapstatus'] == '2') {
-                                            $statusLabel = '<label class="badge badge-danger">DECLINED</label>';
-                                        } else {
-                                            $statusLabel = '<label class="badge badge-secondary">UNKNOWN</label>';
-                                        }
-                                        echo '<td>' . $statusLabel . '</td>';
-                                        echo '</tr>';
-                                    }
-                                ?>
-                            </tbody>
-                        </table>
+                    <table class="table table-hover table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Report Type</th>
+                                <th>May Ari</th>
+                                <th>Date Application</th>
+                                <th>Scheduled Date</th>
+                                <th>Contact Number</th>
+                                <th>Proof Payment</th>
+                                <th>Baptism Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            // Fetch records where bapstatus is 1 or 2
+                            $query = mysqli_query($conn, "SELECT * FROM coh WHERE bapstatus IN ('1', '2')");
+                            while ($report = mysqli_fetch_assoc($query)) {
+                                echo '<tr>';
+                                echo '<td>Car/House Report</td>';
+                                echo '<td>' . htmlspecialchars($report['may_ari']) . '</td>';
+                                echo '<td>' . date('M d, Y h:i A', strtotime($report['date'])) . '</td>';
+                                echo '<td>' . date('M d, Y h:i A', strtotime($report['petsa_ng_pagbabasbas'])) . '</td>';
+                                echo '<td>' . htmlspecialchars($report['contact_number_owner']) . '</td>';
+
+                                // Show proof payment
+                                if (!empty($report['picture'])) {
+                                    echo '<td><img src="' . htmlspecialchars($report['proofpayment']) . '" alt="Picture" /></td>';
+                                } else {
+                                    echo '<td></td>';
+                                }
+
+                                // Map bapstatus to a badge label
+                                if ($report['bapstatus'] == '1') {
+                                    $statusLabel = '<label class="badge badge-success">APPROVED</label>';
+                                } elseif ($report['bapstatus'] == '2') {
+                                    $statusLabel = '<label class="badge badge-danger">DECLINED</label>';
+                                } else {
+                                    $statusLabel = '<label class="badge badge-secondary">UNKNOWN</label>';
+                                }
+                                echo '<td>' . $statusLabel . '</td>';
+                                echo '</tr>';
+                            }
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -231,3 +236,24 @@ if ($conn->connect_error) {
 // Footer
 ?>
 </body>
+
+<!-- JavaScript function for printing -->
+<script>
+function openPrintWindow() {
+    var printContents = document.getElementById('printableContent').innerHTML;
+    var newWindow = window.open('', '', 'width=900,height=600');
+    newWindow.document.write('<html><head><title>Car/House Reports</title>');
+    // Include Bootstrap or other styling
+    newWindow.document.write('<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">');
+    // Optional table border styling
+    newWindow.document.write('<style>table, th, td { border: 1px solid #000 !important; border-collapse: collapse; }</style>');
+    newWindow.document.write('</head><body>');
+    newWindow.document.write('<h1 style="text-align: center;">Car/House Baptismal History Reports</h1>');
+    newWindow.document.write(printContents);
+    newWindow.document.write('</body></html>');
+    newWindow.document.close();
+    newWindow.focus();
+    newWindow.print();
+    newWindow.close();
+}
+</script>

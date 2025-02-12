@@ -169,8 +169,15 @@ if ($conn->connect_error) {
                 <div class="card-header text-white">
                     <h1 class="mb-0">Confirmation History Reports</h1>
                 </div>
-                <div class="card-body">
-                    <p class="mb-3">This page displays a list of accepted and declined confirmation records.</p>
+
+                <p class="mb-3">This page displays a list of accepted and declined confirmation records.</p>
+
+                <!-- Print button -->
+                <div class="no-print" style="text-align: right; margin-bottom: 10px;">
+                    <button onclick="openPrintWindow()" class="btn btn-primary">Print Report</button>
+                </div>
+                <!-- Wrap table content for printing -->
+                <div id="printableContent">
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered">
                             <thead class="thead-dark">
@@ -184,19 +191,16 @@ if ($conn->connect_error) {
                                     <th>Confirmation Date</th>
                                     <th>Contact</th>
                                     <th>Picture</th>
-                                    <!-- <th>Actions</th> -->
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                // Retrieve confirmation records from the confirmations table.
-                                // Accepted confirmations are handled by aconfirmation.php while declined ones are in dconfirmation.php.
+                                // Retrieve confirmation records
                                 $query = mysqli_query($conn, "SELECT * FROM confirmation");
                                 while ($report = mysqli_fetch_assoc($query)) {
                                     echo '<tr>';
-                                    // Determine report type based on a status field ('accepted' or 'declined')
                                     echo '<td>' . htmlspecialchars($report['log_id']) . '</td>';
-                                    $confirmationType = ($report['bapstatus'] === 1) ? 'Accepted Confirmation' : 'Declined Confirmation';
+                                    $confirmationType = ($report['bapstatus'] == 1) ? 'Accepted Confirmation' : 'Declined Confirmation';
                                     echo '<td>' . htmlspecialchars($confirmationType) . '</td>';
                                     echo '<td>' . htmlspecialchars($report['fullname']) . '</td>';
                                     echo '<td>' . htmlspecialchars($report['gender']) . '</td>';
@@ -205,13 +209,6 @@ if ($conn->connect_error) {
                                     echo '<td>' . date('M d, Y h:i A', strtotime($report['date'])) . '</td>';
                                     echo '<td>' . htmlspecialchars($report['phone']) . '</td>';
                                     echo '<td><img src="' . htmlspecialchars($report['picture']) . '" alt="Picture" style="max-width:50px;" class="img-thumbnail"></td>';
-                                    // echo '<td>';
-                                    // echo '<a href="view_confirmation.php?log_id=' . urlencode($report['log_id']) . '" class="btn btn-sm btn-info">View</a>';
-                                    // // Allow download link only for accepted confirmations, matching aconfirmation.php logic.
-                                    // if ($report['bapstatus'] === 1) {
-                                    //     echo ' <a href="download_confirmation.php?log_id=' . urlencode($report['log_id']) . '" class="btn btn-sm btn-success">Download</a>';
-                                    // }
-                                    // echo '</td>';
                                     echo '</tr>';
                                 }
                                 ?>
@@ -223,6 +220,26 @@ if ($conn->connect_error) {
         </div>
     </div>
 </div>
+
+<script>
+function openPrintWindow() {
+    var printContents = document.getElementById('printableContent').innerHTML;
+    var newWindow = window.open('', '', 'width=900,height=600');
+    newWindow.document.write('<html><head><title>Confirmation History Reports</title>');
+    // Include Bootstrap CSS (or any stylesheet you want)
+    newWindow.document.write('<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">');
+    // Add styles for thicker borders
+    newWindow.document.write('<style>table, th, td { border: 1px solid #000 !important; border-collapse: collapse; }</style>');
+    newWindow.document.write('</head><body>');
+    newWindow.document.write('<h1 style="text-align: center;">Confirmation History Reports</h1>');
+    newWindow.document.write(printContents);
+    newWindow.document.write('</body></html>');
+    newWindow.document.close();
+    newWindow.focus();
+    newWindow.print();
+    newWindow.close();
+}
+</script>
 <?php
 // Footer
 ?>

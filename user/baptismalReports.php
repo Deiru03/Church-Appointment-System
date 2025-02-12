@@ -229,19 +229,25 @@ if ($conn->connect_error) {
 </div>
 
 <script>
-function openPrintWindow() {
-    var printContents = document.getElementById('printableContent').innerHTML;
-    var newWindow = window.open('', '', 'width=900,height=600');
-    newWindow.document.write('<html><head><title>Print Baptismal Reports</title>');
-    // Add any CSS links you might need
-    newWindow.document.write('</head><body>');
-    newWindow.document.write(printContents);
-    newWindow.document.write('</body></html>');
-    newWindow.document.close();
-    newWindow.focus();
-    newWindow.print();
-    newWindow.close();
-}
+    function openPrintWindow() {
+        var printContents = document.getElementById('printableContent').innerHTML;
+        var newWindow = window.open('', '', 'width=900,height=600');
+        newWindow.document.write('<html><head><title>Print Baptismal Reports</title>');
+        // Include Bootstrap for styling
+        newWindow.document.write('<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">');
+        // Add custom borders
+        newWindow.document.write('<style>');
+        newWindow.document.write('table, th, td { border: 1px solid #000 !important; border-collapse: collapse; }');
+        newWindow.document.write('</style>');
+        newWindow.document.write('</head><body>');
+        newWindow.document.write('<h1 style="text-align: center;">Baptismal Reports</h1>');
+        newWindow.document.write(printContents);
+        newWindow.document.write('</body></html>');
+        newWindow.document.close();
+        newWindow.focus();
+        newWindow.print();
+        newWindow.close();
+    }
 </script>
 
 </body>

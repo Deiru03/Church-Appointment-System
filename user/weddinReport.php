@@ -169,71 +169,80 @@ if ($conn->connect_error) {
                 <div class="card-header text-white">
                 <h1 class="mb-0">Wedding History Reports</h1>
             </div>
-            <div class="card-body">
-                <p class="mb-3">This page displays a list of wedding reports pending approval or decline.</p>
+            
+            <p class="mb-3">This page displays a list of wedding reports pending approval or decline.</p>
+
+            <!-- Print button -->
+            <div style="text-align: right; margin-bottom: 10px;" class="no-print">
+                <button onclick="openPrintWindow()" class="btn btn-primary">Print Report</button>
+            </div>
+
+           <!-- Wrap table content for printing -->
+            <div id="printableContent">
                 <div class="table-responsive">
-                        <table class="table table-hover table-bordered">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Report Type</th>
-                                    <th>Bride Name</th>
-                                    <th>Groom Name</th>
-                                    <th>Date of Wedding</th>
-                                    <th>Report Date</th>
-                                    <th>Contact</th>
-                                    <th>Picture</th>
-                                    <th>Wedding ID</th>
-                                    <!-- <th>Actions</th> -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                    // Fetch wedding reports from the database
-                                    $weddingReports = array();
-                                    $query = mysqli_query($conn, "SELECT * FROM wedding");
-                                    while ($row = mysqli_fetch_assoc($query)) {
-                                        $weddingReports[] = $row;
-                                    }
-                                    foreach ($weddingReports as $report) {
-                                        echo '<tr>';
-                                        echo '<td>Wedding Report</td>';
-                                        echo '<td>' . htmlspecialchars($report['bride_name']) . '</td>';
-                                        echo '<td>' . htmlspecialchars($report['groom_name']) . '</td>';
-                                        // echo '<td>' . htmlspecialchars($report['marriage_sched']) . '</td>';
-                                        echo '<td>' . date('M d, Y h:i A', strtotime($report['marriage_sched'])) . '</td>';
-                                        echo '<td>' . date('M d, Y h:i A', strtotime($report['date'])) . '</td>';
-                                        echo '<td>' . htmlspecialchars($report['marriage_phone']) . '</td>';
-                                        if (!empty($report['picture'])) {
-                                        echo '<td><img src="' . htmlspecialchars($report['picture']) . '" alt="Picture" /></td>';
-                                        } else {
-                                        echo '<td></td>';
-                                        }
-                                        echo '<td>' . htmlspecialchars($report['log_id']) . '</td>';
-                                        // echo '<td>';
-                                        // //   // Approve wedding using awedding.php
-                                        // //   echo '<form method="post" action="awedding.php" style="display:inline-block;">';
-                                        // //   echo '<input type="hidden" name="wedding_id" value="' . htmlspecialchars($report['wedding_id']) . '">';
-                                        // //   echo '<button type="submit" name="action_a" value="approve" class="btn btn-sm btn-success">Approve</button>';
-                                        // //   echo '</form> ';
-                                        // //   // Decline wedding using dwedding.php
-                                        // //   echo '<form method="post" action="dwedding.php" style="display:inline-block; margin-left:5px;">';
-                                        // //   echo '<input type="hidden" name="wedding_id" value="' . htmlspecialchars($report['wedding_id']) . '">';
-                                        // //   echo '<button type="submit" name="action_a" value="decline" class="btn btn-sm btn-danger">Decline</button>';
-                                        // //   echo '</form>';
-                                        // echo '</td>';
-                                        echo '</tr>';
-                                    }
-                                ?>
-                            </tbody>
-                        </table>
+                    <table class="table table-hover table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Report Type</th>
+                                <th>Bride Name</th>
+                                <th>Groom Name</th>
+                                <th>Date of Wedding</th>
+                                <th>Report Date</th>
+                                <th>Contact</th>
+                                <th>Picture</th>
+                                <th>Wedding ID</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            // Fetch wedding reports
+                            $weddingReports = [];
+                            $query = mysqli_query($conn, "SELECT * FROM wedding");
+                            while ($row = mysqli_fetch_assoc($query)) {
+                                $weddingReports[] = $row;
+                            }
+                            foreach ($weddingReports as $report) {
+                                echo '<tr>';
+                                echo '<td>Wedding Report</td>';
+                                echo '<td>' . htmlspecialchars($report['bride_name']) . '</td>';
+                                echo '<td>' . htmlspecialchars($report['groom_name']) . '</td>';
+                                echo '<td>' . date('M d, Y h:i A', strtotime($report['marriage_sched'])) . '</td>';
+                                echo '<td>' . date('M d, Y h:i A', strtotime($report['date'])) . '</td>';
+                                echo '<td>' . htmlspecialchars($report['marriage_phone']) . '</td>';
+                                if (!empty($report['picture'])) {
+                                    echo '<td><img src="' . htmlspecialchars($report['picture']) . '" alt="Picture" /></td>';
+                                } else {
+                                    echo '<td></td>';
+                                }
+                                echo '<td>' . htmlspecialchars($report['log_id']) . '</td>';
+                                echo '</tr>';
+                            }
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             </div>
         </div>
     </div>
 </div>
-
-<?php
-// Footer
-?>
+<script>
+function openPrintWindow() {
+    var printContents = document.getElementById('printableContent').innerHTML;
+    var newWindow = window.open('', '', 'width=900,height=600');
+    newWindow.document.write('<html><head><title>Wedding History Reports</title>');
+    // Include Bootstrap
+    newWindow.document.write('<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">');
+    // Add table borders
+    newWindow.document.write('<style>table, th, td { border: 1px solid #000 !important; border-collapse: collapse; }</style>');
+    newWindow.document.write('</head><body>');
+    newWindow.document.write('<h1 style="text-align: center;">Wedding History Reports</h1>');
+    newWindow.document.write(printContents);
+    newWindow.document.write('</body></html>');
+    newWindow.document.close();
+    newWindow.focus();
+    newWindow.print();
+    newWindow.close();
+}
+</script>
 </body>
