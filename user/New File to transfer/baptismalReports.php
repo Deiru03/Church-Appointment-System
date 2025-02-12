@@ -161,6 +161,7 @@ if ($conn->connect_error) {
 </style>
 
 <body>
+
 <?php include 'extension/topnav.php'; ?>
 <div class="container-fluid">
     <div class="row">
@@ -173,75 +174,57 @@ if ($conn->connect_error) {
                 </div>
                 <div class="card-body">
                     <p class="mb-3">This page displays a list of historical reports.</p>
-
-                    <!-- Print button triggers custom print function -->
-                    <div style="text-align: right; margin-bottom: 10px;" class="no-print">
-                        <button onclick="openPrintWindow()" class="btn btn-primary">Print Report</button>
+                    <!-- Print button added here -->
+                    <div class="no-print" style="text-align: right; margin-bottom: 10px;">
+                        <button onclick="window.print()" class="btn btn-primary">Print Report</button>
                     </div>
-
-                    <!-- Table wrapper we will copy into the print window -->
-                    <div id="printableContent">
-                        <div class="table-responsive">
-                            <table class="table table-hover table-bordered">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th>Report Type</th>
-                                        <th>Log ID</th>
-                                        <th>Full Name</th>
-                                        <th>Gender</th>
-                                        <th>Date of Birth</th>
-                                        <th>Address</th>
-                                        <th>Report Date</th>
-                                        <th>Contact</th>
-                                        <th>Picture</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    // Baptismal Reports
-                                    $baptismalReports = [];
-                                    $query = mysqli_query($conn, "SELECT * FROM baptismal");
-                                    while ($row = mysqli_fetch_assoc($query)) {
-                                        $baptismalReports[] = $row;
-                                    }
-                                    foreach ($baptismalReports as $report) {
-                                        echo '<tr>';
-                                        echo '<td>Baptismal Report</td>';
-                                        echo '<td>' . htmlspecialchars($report['log_id']) . '</td>';
-                                        echo '<td>' . htmlspecialchars($report['fullname']) . '</td>';
-                                        echo '<td>' . htmlspecialchars($report['gender']) . '</td>';
-                                        echo '<td>' . date('M d, Y', strtotime($report['dateofbirth'])) . '</td>';
-                                        echo '<td>' . htmlspecialchars($report['address']) . '</td>';
-                                        echo '<td>' . date('M d, Y h:i A', strtotime($report['date'])) . '</td>';
-                                        echo '<td>' . htmlspecialchars($report['phone']) . '</td>';
-                                        echo '<td><img src="' . htmlspecialchars($report['picture']) . '" style="max-width:50px;" class="img-thumbnail"></td>';
-                                        echo '</tr>';
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div> <!-- /printableContent -->
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Report Type</th>
+                                    <th>Log ID</th>
+                                    <th>Full Name</th>
+                                    <th>Gender</th>
+                                    <th>Date of Birth</th>
+                                    <th>Address</th>
+                                    <th>Report Date</th>
+                                    <th>Contact</th>
+                                    <th>Picture</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                // Baptismal Reports
+                                $baptismalReports = [];
+                                $query = mysqli_query($conn, "SELECT * FROM baptismal");
+                                while ($row = mysqli_fetch_assoc($query)) {
+                                    $baptismalReports[] = $row;
+                                }
+                                foreach ($baptismalReports as $report) {
+                                    echo '<tr>';
+                                    echo '<td>Baptismal Report</td>';
+                                    echo '<td>' . htmlspecialchars($report['log_id']) . '</td>';
+                                    echo '<td>' . htmlspecialchars($report['fullname']) . '</td>';
+                                    echo '<td>' . htmlspecialchars($report['gender']) . '</td>';
+                                    echo '<td>' . date('M d, Y', strtotime($report['dateofbirth'])) . '</td>';
+                                    echo '<td>' . htmlspecialchars($report['address']) . '</td>';
+                                    echo '<td>' . date('M d, Y h:i A', strtotime($report['date'])) . '</td>';
+                                    echo '<td>' . htmlspecialchars($report['phone']) . '</td>';
+                                    echo '<td><img src="' . htmlspecialchars($report['picture']) . '" alt="Picture" style="max-width:50px;" class="img-thumbnail"></td>';
+                                    echo '</tr>';
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<script>
-function openPrintWindow() {
-    var printContents = document.getElementById('printableContent').innerHTML;
-    var newWindow = window.open('', '', 'width=900,height=600');
-    newWindow.document.write('<html><head><title>Print Baptismal Reports</title>');
-    // Add any CSS links you might need
-    newWindow.document.write('</head><body>');
-    newWindow.document.write(printContents);
-    newWindow.document.write('</body></html>');
-    newWindow.document.close();
-    newWindow.focus();
-    newWindow.print();
-    newWindow.close();
-}
-</script>
-
+<?php
+// Footer
+?>
 </body>

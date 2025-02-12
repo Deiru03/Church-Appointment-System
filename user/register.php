@@ -32,35 +32,35 @@ function send_email_notification($to, $subject, $message) {
     $smtp_username = 'schedulechurch@gmail.com';
     $smtp_password = 'komgbstuqmvaunrc';
 
-    // Load PHPMailer library
-    require 'PHPMailer/src/Exception.php';
-    require 'PHPMailer/src/PHPMailer.php';
-    require 'PHPMailer/src/SMTP.php';
+    // // Load PHPMailer library
+    // require 'PHPMailer/src/Exception.php';
+    // require 'PHPMailer/src/PHPMailer.php';
+    // require 'PHPMailer/src/SMTP.php';
 
-    // Create a PHPMailer object
-    $mail = new PHPMailer();
+    // // Create a PHPMailer object
+    // $mail = new PHPMailer();
 
-    // Enable SMTP
-    $mail->isSMTP();
-    $mail->Host       = $smtp_host;
-    $mail->SMTPAuth   = true;
-    $mail->Username   = $smtp_username;
-    $mail->Password   = $smtp_password;
-    $mail->SMTPSecure = 'tls'; // or 'ssl' for SSL
-    $mail->Port       = $smtp_port;
+    // // Enable SMTP
+    // $mail->isSMTP();
+    // $mail->Host       = $smtp_host;
+    // $mail->SMTPAuth   = true;
+    // $mail->Username   = $smtp_username;
+    // $mail->Password   = $smtp_password;
+    // $mail->SMTPSecure = 'tls'; // or 'ssl' for SSL
+    // $mail->Port       = $smtp_port;
 
-    // Set From, To, Subject, and Body
-    $mail->setFrom($smtp_username, 'CHURCH-RESERVATION');
-    $mail->addAddress($to);
-    $mail->Subject = $subject;
-    $mail->Body    = $message;
+    // // Set From, To, Subject, and Body
+    // $mail->setFrom($smtp_username, 'CHURCH-RESERVATION');
+    // $mail->addAddress($to);
+    // $mail->Subject = $subject;
+    // $mail->Body    = $message;
 
-    // Send the email
-    if ($mail->send()) {
-        return true;
-    } else {
-        return false;
-    }
+    // // Send the email
+    // if ($mail->send()) {
+    //     return true;
+    // } else {
+    //     return false;
+    // }
 }
 
 $status = ''; 
@@ -125,13 +125,13 @@ if (isset($_POST['register'])) {
                                     // Send email notification
                                     $subject = 'Registration Confirmation';
                                     $message = 'Thank you for registering on our website.';
-                                    if (send_email_notification($user_name, $subject, $message)) {
-                                        // Email sent successfully
-                                        $status = '<div class="alert alert-success">Registration successful!.</div> <meta http-equiv="refresh" content="5; url=/user/login">';
-                                    } else {
-                                        // Failed to send email
-                                        $status = '<div class="alert alert-warning">Registration successful, but failed to send confirmation email.</div>';
-                                    }
+                                    // if (send_email_notification($user_name, $subject, $message)) {
+                                    //     // Email sent successfully
+                                    //     $status = '<div class="alert alert-success">Registration successful!.</div> <meta http-equiv="refresh" content="5; url=/user/login">';
+                                    // } else {
+                                    //     // Failed to send email
+                                    //     $status = '<div class="alert alert-warning">Registration successful, but failed to send confirmation email.</div>';
+                                    // }
                                 } else {
                                     $status = '<div class="alert alert-danger">Registration failed. Please try again later.</div>';
                                 }
