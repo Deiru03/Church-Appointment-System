@@ -156,7 +156,6 @@ if ($conn->connect_error) {
 
 
 <body>
-
 <?php include 'extension/topnav.php'; ?>
 
 <div class="container-fluid" >
@@ -167,65 +166,104 @@ if ($conn->connect_error) {
         <div class="content-wrapper" >
             <div class="page-title">
                 <div class="card-header text-white">
-                <h1 class="mb-0">Wedding History Reports</h1>
-            </div>
-            
-            <p class="mb-3">This page displays a list of wedding reports pending approval or decline.</p>
-
-            <!-- Print button -->
-            <div style="text-align: right; margin-bottom: 10px;" class="no-print">
-                <button onclick="openPrintWindow()" class="btn btn-primary">Print Report</button>
-            </div>
-
-           <!-- Wrap table content for printing -->
-            <div id="printableContent">
-                <div class="table-responsive">
-                    <table class="table table-hover table-bordered">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Report Type</th>
-                                <th>Bride Name</th>
-                                <th>Groom Name</th>
-                                <th>Date of Wedding</th>
-                                <th>Report Date</th>
-                                <th>Contact</th>
-                                <th>Picture</th>
-                                <th>Wedding ID</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            // Fetch wedding reports
-                            $weddingReports = [];
-                            $query = mysqli_query($conn, "SELECT * FROM wedding");
-                            while ($row = mysqli_fetch_assoc($query)) {
-                                $weddingReports[] = $row;
-                            }
-                            foreach ($weddingReports as $report) {
-                                echo '<tr>';
-                                echo '<td>Wedding Report</td>';
-                                echo '<td>' . htmlspecialchars($report['bride_name']) . '</td>';
-                                echo '<td>' . htmlspecialchars($report['groom_name']) . '</td>';
-                                echo '<td>' . date('M d, Y h:i A', strtotime($report['marriage_sched'])) . '</td>';
-                                echo '<td>' . date('M d, Y h:i A', strtotime($report['date'])) . '</td>';
-                                echo '<td>' . htmlspecialchars($report['marriage_phone']) . '</td>';
-                                if (!empty($report['picture'])) {
-                                    echo '<td><img src="' . htmlspecialchars($report['picture']) . '" alt="Picture" /></td>';
-                                } else {
-                                    echo '<td></td>';
-                                }
-                                echo '<td>' . htmlspecialchars($report['log_id']) . '</td>';
-                                echo '</tr>';
-                            }
-                            ?>
-                        </tbody>
-                    </table>
+                    <h1 class="mb-0">Wedding History Reports</h1>
                 </div>
-            </div>
+                
+                <p class="mb-3">This page displays a list of wedding reports pending approval or decline.</p>
+
+                <!-- Date filter and print section -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <form method="GET" class="no-print">
+                            <div class="row align-items-end">
+                                <div class="col-md-4">
+                                    <div class="form-group mb-0">
+                                        <label for="start_date" class="font-weight-bold">Start Date</label>
+                                        <input type="date" id="start_date" name="start_date" 
+                                            class="form-control" 
+                                            value="<?php echo isset($_GET['start_date']) ? $_GET['start_date'] : ''; ?>">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group mb-0">
+                                        <label for="end_date" class="font-weight-bold">End Date</label>
+                                        <input type="date" id="end_date" name="end_date" 
+                                            class="form-control" 
+                                            value="<?php echo isset($_GET['end_date']) ? $_GET['end_date'] : ''; ?>">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary mr-2">
+                                            <i class="fas fa-filter"></i> Filter
+                                        </button>
+                                        <button type="button" onclick="openPrintWindow()" class="btn btn-success">
+                                            <i class="fas fa-print"></i> Print Report
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Wrap table content for printing -->
+                <div id="printableContent">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Report Type</th>
+                                    <th>Bride Name</th>
+                                    <th>Groom Name</th>
+                                    <th>Date of Wedding</th>
+                                    <th>Report Date</th>
+                                    <th>Contact</th>
+                                    <th>Picture</th>
+                                    <th>Wedding ID</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                // Date filtering
+                                $start_date = isset($_GET['start_date']) ? $_GET['start_date'] : '';
+                                $end_date = isset($_GET['end_date']) ? $_GET['end_date'] : '';
+                                $query_str = "SELECT * FROM wedding";
+                                if ($start_date && $end_date) {
+                                    $query_str .= " WHERE date BETWEEN '$start_date' AND '$end_date'";
+                                }
+                                
+                                $weddingReports = [];
+                                $query = mysqli_query($conn, $query_str);
+                                while ($row = mysqli_fetch_assoc($query)) {
+                                    $weddingReports[] = $row;
+                                }
+                                foreach ($weddingReports as $report) {
+                                    echo '<tr>';
+                                    echo '<td>Wedding Report</td>';
+                                    echo '<td>' . htmlspecialchars($report['bride_name']) . '</td>';
+                                    echo '<td>' . htmlspecialchars($report['groom_name']) . '</td>';
+                                    echo '<td>' . date('M d, Y h:i A', strtotime($report['marriage_sched'])) . '</td>';
+                                    echo '<td>' . date('M d, Y h:i A', strtotime($report['date'])) . '</td>';
+                                    echo '<td>' . htmlspecialchars($report['marriage_phone']) . '</td>';
+                                    if (!empty($report['picture'])) {
+                                        echo '<td><img src="' . htmlspecialchars($report['picture']) . '" alt="Picture" style="max-width:50px;" class="img-thumbnail" /></td>';
+                                    } else {
+                                        echo '<td></td>';
+                                    }
+                                    echo '<td>' . htmlspecialchars($report['log_id']) . '</td>';
+                                    echo '</tr>';
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 <script>
 function openPrintWindow() {
     var printContents = document.getElementById('printableContent').innerHTML;

@@ -171,13 +171,43 @@ if ($conn->connect_error) {
                 <div class="card-header text-white">
                     <h1 class="mb-0">Baptismal Reports</h1>
                 </div>
-                <div class="card-body">
-                    <p class="mb-3">This page displays a list of historical reports.</p>
+                <p class="mb-3">This page displays a list of historical reports.</p>
 
-                    <!-- Print button triggers custom print function -->
-                    <div style="text-align: right; margin-bottom: 10px;" class="no-print">
-                        <button onclick="openPrintWindow()" class="btn btn-primary">Print Report</button>
+                <!-- Date filter and print section -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <form method="GET" class="no-print">
+                            <div class="row align-items-end">
+                                <div class="col-md-4">
+                                    <div class="form-group mb-0">
+                                        <label for="start_date" class="font-weight-bold">Start Date</label>
+                                        <input type="date" id="start_date" name="start_date" 
+                                            class="form-control" 
+                                            value="<?php echo isset($_GET['start_date']) ? $_GET['start_date'] : ''; ?>">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group mb-0">
+                                        <label for="end_date" class="font-weight-bold">End Date</label>
+                                        <input type="date" id="end_date" name="end_date" 
+                                            class="form-control" 
+                                            value="<?php echo isset($_GET['end_date']) ? $_GET['end_date'] : ''; ?>">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary mr-2">
+                                            <i class="fas fa-filter"></i> Filter
+                                        </button>
+                                        <button type="button" onclick="openPrintWindow()" class="btn btn-success">
+                                            <i class="fas fa-print"></i> Print Report
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
+                </div>
 
                     <!-- Table wrapper we will copy into the print window -->
                     <div id="printableContent">
@@ -198,9 +228,15 @@ if ($conn->connect_error) {
                                 </thead>
                                 <tbody>
                                     <?php
-                                    // Baptismal Reports
+                                    // Date filtering
+                                    $start_date = isset($_GET['start_date']) ? $_GET['start_date'] : '';
+                                    $end_date = isset($_GET['end_date']) ? $_GET['end_date'] : '';
+                                    $query_str = "SELECT * FROM baptismal";
+                                    if ($start_date && $end_date) {
+                                        $query_str .= " WHERE date BETWEEN '$start_date' AND '$end_date'";
+                                    }
                                     $baptismalReports = [];
-                                    $query = mysqli_query($conn, "SELECT * FROM baptismal");
+                                    $query = mysqli_query($conn, $query_str);
                                     while ($row = mysqli_fetch_assoc($query)) {
                                         $baptismalReports[] = $row;
                                     }
@@ -222,7 +258,7 @@ if ($conn->connect_error) {
                             </table>
                         </div>
                     </div> <!-- /printableContent -->
-                </div>
+                </>
             </div>
         </div>
     </div>

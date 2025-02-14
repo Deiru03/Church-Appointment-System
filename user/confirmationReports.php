@@ -6,14 +6,11 @@ $userid = $_SESSION['userid'];
 $search = $userid;
 $status = '';
 $teacher_id = $_SESSION['userid'];
- 
+
 ob_start(); // Start output buffering
 include('extension/title.php'); // Include the title file
 $title = ob_get_clean(); // Store the included content and clear the buffer
 
-?>
-
-<?php
 // Database connection
 $db_host = "localhost";
 $db_user = "root";
@@ -51,131 +48,167 @@ if ($conn->connect_error) {
 
     <link rel="stylesheet" type="text/css" href="/assets/alertifyjs/css/alertify.css">
     <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-</head>
-<style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f4ff;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 800px auto;
-            margin: 30px auto;
-            margin-top: 100px;
-            padding: 20px;
-            background-color: #ffffff;
-            border: 2px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1px;
-        }
-        .header img {
-            max-width: 100px;
-            max-height: 100px;
-        }
-        .center-image {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .center-image img {
-            max-width: 200px;
-        }
-        h1 {
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-        label {
-            margin: 10px 0 5px;
-            font-weight: bold;
-        }
-        input[type="text"], input[type="date"], input[type="tel"], select {
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-            width: 100%;
-        }
-        .row {
-            display: flex;
-            justify-content: space-between;
-        }
-        .row input[type="text"] {
-            width: 48%;
-        }
-        .godparents {
-            display: flex;
-            flex-direction: column;
-        }
-        .godparents input[type="text"] {
-            margin-bottom: 5px;
-        }
-        .user-id {
-            margin: 20px 0;
-        }
-        .user-id input[type="file"] {
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        .submit-btn {
-            background-color: #007bff;
-            color: #fff;
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 20px;
-            align-self: flex-end;
-        }
-        .submit-btn:hover {
-            background-color: #0056b3;
+    <!-- Print styles -->
+    <style>
+        @media print {
+            /* Hide navigation and any element not needed on print */
+            .no-print {
+                display: none;
+            }
         }
     </style>
-
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f4ff;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 800px;
+        margin: 30px auto;
+        margin-top: 100px;
+        padding: 20px;
+        background-color: #ffffff;
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+    }
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1px;
+    }
+    .header img {
+        max-width: 100px;
+        max-height: 100px;
+    }
+    .center-image {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .center-image img {
+        max-width: 200px;
+    }
+    h1 {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+    label {
+        margin: 10px 0 5px;
+        font-weight: bold;
+    }
+    input[type="text"], input[type="date"], input[type="tel"], select {
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        width: 100%;
+    }
+    .row {
+        display: flex;
+        justify-content: space-between;
+    }
+    .row input[type="text"] {
+        width: 48%;
+    }
+    .godparents {
+        display: flex;
+        flex-direction: column;
+    }
+    .godparents input[type="text"] {
+        margin-bottom: 5px;
+    }
+    .user-id {
+        margin: 20px 0;
+    }
+    .user-id input[type="file"] {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    .submit-btn {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 20px;
+        align-self: flex-end;
+    }
+    .submit-btn:hover {
+        background-color: #0056b3;
+    }
+</style>
 
 <body>
-
-<?php include('extension/topnav.php'); ?>
-
-<div class="container-fluid" >
+<?php include 'extension/topnav.php'; ?>
+<div class="container-fluid">
     <div class="row">
         <?php include('extension/sidenav.php'); ?>
         <!-- main content wrapper start-->
-
-        <div class="content-wrapper" >
+        <div class="content-wrapper">
             <div class="page-title">
                 <div class="card-header text-white">
                     <h1 class="mb-0">Confirmation History Reports</h1>
                 </div>
-
                 <p class="mb-3">This page displays a list of accepted and declined confirmation records.</p>
 
-                <!-- Print button -->
-                <div class="no-print" style="text-align: right; margin-bottom: 10px;">
-                    <button onclick="openPrintWindow()" class="btn btn-primary">Print Report</button>
+                <!-- Date filter and print section -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <form method="GET" class="no-print">
+                            <div class="row align-items-end">
+                                <div class="col-md-4">
+                                    <div class="form-group mb-0">
+                                        <label for="start_date" class="font-weight-bold">Start Date</label>
+                                        <input type="date" id="start_date" name="start_date" 
+                                            class="form-control" 
+                                            value="<?php echo isset($_GET['start_date']) ? $_GET['start_date'] : ''; ?>">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group mb-0">
+                                        <label for="end_date" class="font-weight-bold">End Date</label>
+                                        <input type="date" id="end_date" name="end_date" 
+                                            class="form-control" 
+                                            value="<?php echo isset($_GET['end_date']) ? $_GET['end_date'] : ''; ?>">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary mr-2">
+                                            <i class="fas fa-filter"></i> Filter
+                                        </button>
+                                        <button type="button" onclick="openPrintWindow()" class="btn btn-success">
+                                            <i class="fas fa-print"></i> Print Report
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
+
                 <!-- Wrap table content for printing -->
                 <div id="printableContent">
                     <div class="table-responsive">
@@ -195,9 +228,19 @@ if ($conn->connect_error) {
                             </thead>
                             <tbody>
                                 <?php
-                                // Retrieve confirmation records
-                                $query = mysqli_query($conn, "SELECT * FROM confirmation");
-                                while ($report = mysqli_fetch_assoc($query)) {
+                                // Date filtering
+                                $start_date = isset($_GET['start_date']) ? $_GET['start_date'] : '';
+                                $end_date = isset($_GET['end_date']) ? $_GET['end_date'] : '';
+                                $query_str = "SELECT * FROM confirmation";
+                                if ($start_date && $end_date) {
+                                    $query_str .= " WHERE date BETWEEN '$start_date' AND '$end_date'";
+                                }
+                                $confirmationReports = [];
+                                $query = mysqli_query($conn, $query_str);
+                                while ($row = mysqli_fetch_assoc($query)) {
+                                    $confirmationReports[] = $row;
+                                }
+                                foreach ($confirmationReports as $report) {
                                     echo '<tr>';
                                     echo '<td>' . htmlspecialchars($report['log_id']) . '</td>';
                                     $confirmationType = ($report['bapstatus'] == 1) ? 'Accepted Confirmation' : 'Declined Confirmation';
