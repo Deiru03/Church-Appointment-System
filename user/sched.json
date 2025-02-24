@@ -5,41 +5,28 @@
         "Sunday": "9:30 am",
         "Pasko": "9:00 am",
         "New Year": "9:00 am",
-        "Fiesta": "9:00 am",
-        "": null
-    },
-    "weeeew": {
-        "": null
+        "Fiesta": "9:00 am"
     },
     "Confirmation": {
-        "": null
+        "Note": "Scheduled as needed"
     },
     "First day of the Month for wedding applicant": {
-        "": null
+        "Note": "As scheduled"
     },
     "Fiesta Non Wedding Applicant": {
-        "": null
+        "Note": "As scheduled"
     },
     "First Communion": {
-        "": null
+        "Note": "Scheduled as needed"
     },
     "Wedding": {
         "Thursday": "9:00 am, 10:30 am, 2:00 pm",
         "Friday": "9:00 am, 10:30 am, 2:00 pm",
-        "Saturday": "9:00 am, 10:30 am, 2:00 pm",
-        "": null
+        "Saturday": "9:00 am, 10:30 am, 2:00 pm"
     },
     "Funeral Mass": {
-        "": null
-    },
-    "Tuesday": {
-        "": null
-    },
-    "Saturday 9:am": {
-        "": null
-    },
-    "monday 2 pm sad sdasd ardasd": {
-        "": null
-    },
-    "neww sched 1pm": []
+        "Tuesday": "As scheduled",
+        "Saturday": "9:00 am",
+        "Monday": "1:00 pm, 2:00 pm"
+    }
 }

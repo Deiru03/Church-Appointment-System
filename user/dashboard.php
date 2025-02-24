@@ -260,39 +260,39 @@ $total_coh = $con->query("SELECT COUNT(*) AS total FROM coh")->fetch_assoc()['to
     //     $credits = $result['user_credits'];
     //     $cred_details = 'Available Credit(s)';
     // }
-    
+
     // if($result['user_credits'] > 0){
     //     $icon = 'text-success';
     // }else{
     //     $icon = 'text-danger';
     // }
-    
+
     // if($result['user_rank']=='superadmin'){
     //     $que3 = mysqli_query($con,"select * from users where user_rank='export'");
     // }else{
     //     $que3 = mysqli_query($con,"select * from users where user_rank='export' and user_upline='$userid'");
     // }
     // $exp = mysqli_num_rows($que3);
-    
+
     // if($exp == 0){
     //     $desc_exp = 'You have no  export users!';
     // }else{
     //     $desc_exp = 'Total export user(s)';
     // }
-    
+
     //  if($result['user_rank']=='superadmin'){
     //     $que5 = mysqli_query($con,"select * from users where user_rank='subadmin'");
     // }else{
     //     $que5 = mysqli_query($con,"select * from users where user_rank='subadmin' and user_upline='$userid'");
     // }
     // $suba = mysqli_num_rows($que5);
-    
+
     // if($suba == 0){
     //     $desc_suba = 'You have no Subadmin!';
     // }else{
     //     $desc_suba = 'Total Subadmin(s)';
     // }
-    
+
 
     // if($result['user_rank']=='superadmin'){
     //     $que2 = mysqli_query($con,"select * from users where user_rank='reseller'");
@@ -300,13 +300,13 @@ $total_coh = $con->query("SELECT COUNT(*) AS total FROM coh")->fetch_assoc()['to
     //     $que2 = mysqli_query($con,"select * from users where user_rank='reseller' and user_upline='$userid'");
     // }
     // $rese = mysqli_num_rows($que2);
-    
+
     // if($rese == 0){
     //     $desc_reseller = 'You have no resellers!';
     // }else{
     //     $desc_reseller = 'Total reseller(s)';
     // }
-    
+
     if ($result['user_rank'] == 'superadmin') {
       $que6 = mysqli_query($con, "select * from users where user_rank='normal'");
     } else {
@@ -328,84 +328,84 @@ $total_coh = $con->query("SELECT COUNT(*) AS total FROM coh")->fetch_assoc()['to
     //     $que4 = mysqli_query($con,"select * from users where is_active='1' and user_duration>'0' and user_upline='$userid'");
     // }
     // $onl = mysqli_num_rows($que4);
-    
+
     // if($onl == 0){
     //     $desc_online = 'You have no users online!';
     // }else{
     //     $desc_online = 'Total user(s) online';
     // }
-    
+
     // if($result['user_rank']=='superadmin'){
     //     $que11 = mysqli_query($con,"select * from users where user_rank='administrator'");
     // }else{
     //     $que11 = mysqli_query($con,"select * from users where user_rank='administrator' and user_upline='$userid'");
     // }
     // $administrator_ = mysqli_num_rows($que11);
-    
+
     // if($administrator_ == 0){
     //     $desc11 = 'You have no administrators!';
     // }else{
     //     $desc11 = 'Total administrator(s)';
     // // }
-    
+
     // if($result['user_rank']=='superadmin'){
     //     $que12 = mysqli_query($con,"select * from users where (user_rank='normal' || user_rank='export') and device_connected='1' and user_duration>'0' and is_freeze='0'");
     // }else{
     //     $que12 = mysqli_query($con,"select * from users where (user_rank='normal' || user_rank='export') and device_connected='1' and user_duration>'0' and is_freeze='0' and user_upline='$userid'");
     // }
     // $aclient = mysqli_num_rows($que12);
-    
+
     // if($aclient == 0){
     //     $desc12 = 'You have no active users!';
     // }else{
     //     $desc12 = 'Total active user(s)';
     // }
-    
+
     // if($result['user_rank']=='superadmin'){
     //     $que13 = mysqli_query($con,"select * from users where (user_rank='normal' || user_rank='export') and device_connected='0' and user_duration>'0' and is_freeze='0'");
     // }else{
     //     $que13 = mysqli_query($con,"select * from users where (user_rank='normal' || user_rank='export') and device_connected='0' and user_duration>'0' and is_freeze='0' and user_upline='$userid'");
     // }
     // $iclient = mysqli_num_rows($que13);
-    
+
     // if($iclient == 0){
     //     $desc13 = 'You have no inactive users!';
     // }else{
     //     $desc13 = 'Total inactive user(s)';
     // }
-    
+
     // if($result['user_rank']=='superadmin'){
     //     $que14 = mysqli_query($con,"select * from users where (user_rank='normal' || user_rank='export') and user_duration<1 and is_freeze='0'");
     // }else{
     //     $que14 = mysqli_query($con,"select * from users where (user_rank='normal' || user_rank='export') and user_duration<1 and is_freeze='0' and user_upline='$userid'");
     // }
     // $iexpired = mysqli_num_rows($que14);
-    
+
     // if($iexpired == 0){
     //     $desc14 = 'You have no expired users!';
     // }else{
     //     $desc14 = 'Total expired user(s)';
     // }
-    
+
     //  $dur = calc_time($bio); 
     //  $pdays = $dur['days'] . " days";
     //  $phours = $dur['hours'] . " hours";
     // $pminutes = $dur['minutes'] . " minutes";
     // $pseconds = $dur['seconds'] . " seconds";
-    
+
     // $user_dur1 = strtotime($pdays . $phours . $pminutes . $pseconds);
     // $iac = date('F d, Y ', $user_dur1);
     // $kwery = mysqli_query($con,"select bio from users where user_id='$userid'");
     //             $rows_kwery = mysqli_fetch_array($kwery);      
     //             $dura = $rows_kwery['bio'];
-    
+
 
     // if(  $bio >= '1'){
     //            $dura = $iac;
     // }elseif( $bio == '0'){
     //        $dura = '<label class="badge badge-danger">IN-ACTIVE</label>';
     // } 
-    
+
 
 
     ?>
@@ -448,8 +448,163 @@ $total_coh = $con->query("SELECT COUNT(*) AS total FROM coh")->fetch_assoc()['to
 
 
             <?php if ($user_rank == 'normal') { ?>
+              <div class="row" style="margin-top: 50px;">
+                <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
+                  <div class="card card-statistics h-100" style="background-color:grey;">
+                    <div class="card-body">
+                      <a href="baptismal">
+                        <div class="clearfix">
+                          <div class="float-left">
+                            <span class="text-danger">
+                              <img src="https://img.sikatpinoy.net/images/2024/08/07/image-removebg-preview-1.png"
+                                height="40" width="45" alt="Document Icon">
+                            </span>
+                          </div>
+                          <div class="float-right text-right">
+                            <p class="card-text" style="color:white;"><label>BAPTISMAL REQUEST</label></p>
+                            <h4 style="color: white;"> </h4>
+                          </div>
+                        </div>
+                        <p class="pt-3 mb-0 mt-2 border-top" style="color:white">
+                          <i class="fa fa-plus-circle mr-1" aria-hidden="true"></i> Request Baptismal Certificate
+                        </p>
+                      </a>
+                    </div>
+                  </div>
+                </div>
 
+                <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
+                  <div class="card card-statistics h-100" style="background-color:grey;">
+                    <div class="card-body">
+                      <a href="confirmation">
+                        <div class="clearfix">
+                          <div class="float-left">
+                            <span class="text-danger">
+                              <img src="https://img.sikatpinoy.net/images/2024/08/14/image48efe10dd8815c06.png"
+                                height="40" width="45" alt="Document Icon">
+                            </span>
+                          </div>
+                          <div class="float-right text-right">
+                            <p class="card-text" style="color:white;"><label>CONFIRMATION REQUEST</label></p>
+                            <h4 style="color: white;"> </h4>
+                          </div>
+                        </div>
+                        <p class="pt-3 mb-0 mt-2 border-top" style="color:white">
+                          <i class="fa fa-plus-circle mr-1" aria-hidden="true"></i> Request Confirmation Certificate
+                        </p>
+                      </a>
+                    </div>
+                  </div>
+                </div>
 
+                <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
+                  <div class="card card-statistics h-100" style="background-color:grey;">
+                    <div class="card-body">
+                      <a href="wedding1">
+                        <div class="clearfix">
+                          <div class="float-left">
+                            <span class="text-danger">
+                              <img src="https://img.sikatpinoy.net/images/2024/08/14/imageebd8db62f2da2051.png"
+                                height="40" width="45" alt="Document Icon">
+                            </span>
+                          </div>
+                          <div class="float-right text-right">
+                            <p class="card-text" style="color:white;"><label>WEDDING REQUEST</label></p>
+                            <h4 style="color: white;"> </h4>
+                          </div>
+                        </div>
+                        <p class="pt-3 mb-0 mt-2 border-top" style="color:white">
+                          <i class="fa fa-plus-circle mr-1" aria-hidden="true"></i> Request Marriage Certificate
+                        </p>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
+                  <div class="card card-statistics h-100" style="background-color:grey;">
+                    <div class="card-body">
+                      <a href="coh">
+                        <div class="clearfix">
+                          <div class="float-left">
+                            <span class="text-danger">
+                              <img src="https://stveronicassf.com/wp-content/uploads/2021/05/icon-car-blessed.png"
+                                height="40" width="45" alt="Document Icon">
+                            </span>
+                          </div>
+                          <div class="float-right text-right">
+                            <p class="card-text" style="color:white;"><label>CAR/HOUSE BLESSING</label></p>
+                            <h4 style="color: white;"> </h4>
+                          </div>
+                        </div>
+                        <p class="pt-3 mb-0 mt-2 border-top" style="color:white">
+                          <i class="fa fa-plus-circle mr-1" aria-hidden="true"></i> Request Blessing Schedule
+                        </p>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <?php
+            // Read and parse sched.json file
+            $schedJson = file_get_contents('sched.json');
+            $schedules = json_decode($schedJson, true);
+            ?>
+              <div class="row" style="margin-top: 50px;">
+              
+              <!-- Display Schedule Information -->
+              <div class="col-12 mb-30">
+              <div class="card card-statistics h-100" style="background-color: rgba(128, 128, 128, 0.7);">
+              <div class="card-body">
+                <h4 style="color: rgba(255,255,255,0.9); text-align:center; font-weight:bold; margin-bottom:25px; 
+                  text-transform:uppercase; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+                Available Schedule Times
+                </h4>
+                
+                <div class="schedule-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <?php foreach($schedules as $type => $times) { 
+                if (!empty($times) && $times !== ['']) { ?>
+                <div class="schedule-card" style="background: rgba(255,255,255,0.15); 
+                        padding: 20px; 
+                        border-radius: 10px;
+                        box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+                        backdrop-filter: blur(8px);">
+                  <h5 style="color: rgba(255,255,255,0.95); 
+                     font-weight:bold; 
+                     border-bottom: 2px solid rgba(255,255,255,0.15);
+                     padding-bottom: 10px;
+                     margin-bottom: 15px;">
+                  <?php echo $type; ?>
+                  </h5>
+                  
+                  <div style="color: rgba(255,255,255,0.9);">
+                  <?php foreach($times as $day => $time) {
+                  if($time && $day) { ?>
+                  <div class="schedule-item" style="margin-bottom: 8px;
+                          display: flex;
+                          justify-content: space-between;
+                          align-items: center;
+                          padding: 5px 0;">
+                    <strong style="color: rgba(255,215,0,0.85);"><?php echo $day; ?>:</strong>
+                    <span style="color: rgba(255,255,255,0.85); 
+                       background: rgba(0,0,0,0.15); 
+                       padding: 3px 8px; 
+                       border-radius: 4px;">
+                    <?php echo $time; ?>
+                    </span>
+                  </div>
+                  <?php }
+                  } ?>
+                  </div>
+                </div>
+                <?php }
+                } ?>
+                </div>
+              </div>
+              </div>
+              </div>
+              </div>
             <?php } ?>
 
             <?php if ($user_rank == 'superadmin') { ?>
@@ -656,27 +811,27 @@ $total_coh = $con->query("SELECT COUNT(*) AS total FROM coh")->fetch_assoc()['to
 
 
 
-            </div>
+          </div>
 
-            <div class="col-xl-12 col-lg-6 col-md-6 mb-30">
-              <div class="card card-statistics h-100" style="background-color:grey;">
-                <div class="card-body">
-                  <div
-                    style="margin: 0 auto; background-color: white; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                    <canvas id="scheduleChart" width="1000" height="280"></canvas>
-                  </div>
+          <div class="col-xl-12 col-lg-6 col-md-6 mb-30">
+            <div class="card card-statistics h-100" style="background-color:grey;">
+              <div class="card-body">
+                <div
+                  style="margin: 0 auto; background-color: white; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                  <canvas id="scheduleChart" width="1000" height="280"></canvas>
                 </div>
               </div>
             </div>
+          </div>
 
 
 
 
-          <?php } ?>
+        <?php } ?>
 
 
 
-          <?php include('extension/footer.php'); ?>
+        <?php include('extension/footer.php'); ?>
 
         </div>
 
@@ -737,8 +892,7 @@ $total_coh = $con->query("SELECT COUNT(*) AS total FROM coh")->fetch_assoc()['to
       type: 'bar',
       data: {
         labels: ['Baptismal', 'Confirmation', 'Wedding', 'COH'],
-        datasets: [
-          {
+        datasets: [{
             label: 'Today',
             data: [
               <?php echo $total_today_bap; ?>,
@@ -819,7 +973,9 @@ $total_coh = $con->query("SELECT COUNT(*) AS total FROM coh")->fetch_assoc()['to
 
         // Get today's date
         const now = new Date();
-        const manilaNow = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Manila" }));
+        const manilaNow = new Date(now.toLocaleString("en-US", {
+          timeZone: "Asia/Manila"
+        }));
         const today = manilaNow.toISOString().split('T')[0]; // YYYY-MM-DD format
 
         // Define boundaries
@@ -881,7 +1037,8 @@ $total_coh = $con->query("SELECT COUNT(*) AS total FROM coh")->fetch_assoc()['to
   </script>
 
 
-  <script>async function syncDataToDatabase() {
+  <script>
+    async function syncDataToDatabase() {
       try {
         // Fetch confirmation.json
         const response = await fetch('confirmation.json');
@@ -907,7 +1064,6 @@ $total_coh = $con->query("SELECT COUNT(*) AS total FROM coh")->fetch_assoc()['to
 
     // Run every 5 seconds
     setInterval(syncDataToDatabase, 5000);
-
   </script>
 
   <script>
@@ -942,7 +1098,6 @@ $total_coh = $con->query("SELECT COUNT(*) AS total FROM coh")->fetch_assoc()['to
     }
 
     setInterval(syncWeddingDataToDatabase, 10000);
-
   </script>
 
   <script>
@@ -1040,7 +1195,6 @@ $total_coh = $con->query("SELECT COUNT(*) AS total FROM coh")->fetch_assoc()['to
 
     // Initial update
     updateDashboard();
-
   </script>
 </body>
 
