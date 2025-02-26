@@ -47,6 +47,15 @@ $total_today_coh = $result_today_coh->fetch_assoc()['total_today'];
 $total_week_coh = $result_week_coh->fetch_assoc()['total_week'];
 $total_month_coh = $result_month_coh->fetch_assoc()['total_month'];
 $total_coh = $con->query("SELECT COUNT(*) AS total FROM coh")->fetch_assoc()['total'];
+
+// Fetch Burial data
+$result_today_burial = $con->query("SELECT COUNT(*) AS total_today FROM burial WHERE DATE(sched) = CURDATE()");
+$result_week_burial = $con->query("SELECT COUNT(*) AS total_week FROM burial WHERE WEEK(sched) = WEEK(CURDATE()) AND YEAR(sched) = YEAR(CURDATE())");
+$result_month_burial = $con->query("SELECT COUNT(*) AS total_month FROM burial WHERE MONTH(sched) = MONTH(CURDATE()) AND YEAR(sched) = YEAR(CURDATE())");
+$total_today_burial = $result_today_burial->fetch_assoc()['total_today'];
+$total_week_burial = $result_week_burial->fetch_assoc()['total_week'];
+$total_month_burial = $result_month_burial->fetch_assoc()['total_month'];
+$total_burial = $con->query("SELECT COUNT(*) AS total FROM burial")->fetch_assoc()['total'];
 ?>
 
 
@@ -676,8 +685,6 @@ $total_coh = $con->query("SELECT COUNT(*) AS total FROM coh")->fetch_assoc()['to
           </div>
 
           <div class="row">
-
-
             <?php if ($user_rank == 'superadmin') { ?>
               <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
                 <div class="card card-statistics h-100" style="background-color:grey;">
@@ -708,7 +715,6 @@ $total_coh = $con->query("SELECT COUNT(*) AS total FROM coh")->fetch_assoc()['to
                 </div>
               </div>
 
-
               <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
                 <div class="card card-statistics h-100" style="background-color:grey;">
                   <div class="card-body">
@@ -738,8 +744,6 @@ $total_coh = $con->query("SELECT COUNT(*) AS total FROM coh")->fetch_assoc()['to
                 </div>
               </div>
 
-
-
               <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
                 <div class="card card-statistics h-100" style="background-color:grey;">
                   <div class="card-body">
@@ -752,7 +756,7 @@ $total_coh = $con->query("SELECT COUNT(*) AS total FROM coh")->fetch_assoc()['to
                           </span>
                         </div>
                         <div class="float-right text-right">
-                          <p class="card-text" style="color:white;"><label>WEEDING REPORTS</label></p>
+                          <p class="card-text" style="color:white;"><label>WEDDING REPORTS</label></p>
                           <h4 style="color: white;"> </h4>
                         </div>
                       </div>
@@ -768,7 +772,6 @@ $total_coh = $con->query("SELECT COUNT(*) AS total FROM coh")->fetch_assoc()['to
                   </div>
                 </div>
               </div>
-
 
               <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
                 <div class="card card-statistics h-100" style="background-color:grey;">
@@ -799,25 +802,40 @@ $total_coh = $con->query("SELECT COUNT(*) AS total FROM coh")->fetch_assoc()['to
                 </div>
               </div>
 
-
-
-
-              <!-- <canvas id="scheduleChart" ></canvas> -->
-              <!-- <div style=" margin: 0 auto; background-color: white; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-    <canvas id="scheduleChart"></canvas>
-</div> -->
-
-
-
-
-
+              <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
+                <div class="card card-statistics h-100" style="background-color:grey;">
+                  <div class="card-body">
+                    <a href="aburial">
+                      <div class="clearfix">
+                        <div class="float-left">
+                          <span class="text-danger">
+                            <img src="path/to/burial-icon.png" height="40" width="45" alt="Burial Icon">
+                          </span>
+                        </div>
+                        <div class="float-right text-right">
+                          <p class="card-text" style="color:white;"><label>BURIAL REPORTS</label></p>
+                          <h4 style="color: white;"> </h4>
+                        </div>
+                      </div>
+                      <p class="pt-3 mb-0 mt-2 border-top" style="color:white">
+                        <i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i> Total Schedules Today:
+                        <?php echo $total_today_burial; ?>
+                        <br><i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i> Total Schedules Week:
+                        <?php echo $total_week_burial; ?>
+                        <br><i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i> Total Schedules Month:
+                        <?php echo $total_month_burial; ?>
+                      </p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            <?php } ?>
           </div>
 
-          <div class="col-xl-12 col-lg-6 col-md-6 mb-30">
+          <div class="col-xl-12 col-lg-12 col-md-12 mb-30">
             <div class="card card-statistics h-100" style="background-color:grey;">
               <div class="card-body">
-                <div
-                  style="margin: 0 auto; background-color: white; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <div style="margin: 0 auto; background-color: white; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                   <canvas id="scheduleChart" width="1000" height="280"></canvas>
                 </div>
               </div>
@@ -826,8 +844,7 @@ $total_coh = $con->query("SELECT COUNT(*) AS total FROM coh")->fetch_assoc()['to
 
 
 
-
-        <?php } ?>
+        <?php ?>
 
 
 
@@ -891,14 +908,15 @@ $total_coh = $con->query("SELECT COUNT(*) AS total FROM coh")->fetch_assoc()['to
     var scheduleChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['Baptismal', 'Confirmation', 'Wedding', 'COH'],
+        labels: ['Baptismal', 'Confirmation', 'Wedding', 'COH', 'Burial'],
         datasets: [{
             label: 'Today',
             data: [
               <?php echo $total_today_bap; ?>,
               <?php echo $total_today_conf; ?>,
               <?php echo $total_today_wed; ?>,
-              <?php echo $total_today_coh; ?>
+              <?php echo $total_today_coh; ?>,
+              <?php echo $total_today_burial; ?>
             ],
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
@@ -910,7 +928,8 @@ $total_coh = $con->query("SELECT COUNT(*) AS total FROM coh")->fetch_assoc()['to
               <?php echo $total_week_bap; ?>,
               <?php echo $total_week_conf; ?>,
               <?php echo $total_week_wed; ?>,
-              <?php echo $total_week_coh; ?>
+              <?php echo $total_week_coh; ?>,
+              <?php echo $total_week_burial; ?>
             ],
             backgroundColor: 'rgb(54, 162, 235)',
             borderColor: 'rgb(54, 162, 235)',
@@ -922,7 +941,8 @@ $total_coh = $con->query("SELECT COUNT(*) AS total FROM coh")->fetch_assoc()['to
               <?php echo $total_month_bap; ?>,
               <?php echo $total_month_conf; ?>,
               <?php echo $total_month_wed; ?>,
-              <?php echo $total_month_coh; ?>
+              <?php echo $total_month_coh; ?>,
+              <?php echo $total_month_burial; ?>
             ],
             backgroundColor: 'rgb(75, 192, 192)',
             borderColor: 'rgb(75, 192, 192)',
@@ -934,7 +954,8 @@ $total_coh = $con->query("SELECT COUNT(*) AS total FROM coh")->fetch_assoc()['to
               <?php echo $total_bap; ?>,
               <?php echo $total_conf; ?>,
               <?php echo $total_wed; ?>,
-              <?php echo $total_coh; ?>
+              <?php echo $total_coh; ?>,
+              <?php echo $total_burial; ?>
             ],
             backgroundColor: 'rgb(153, 102, 255)',
             borderColor: 'rgb(153, 102, 255)',
@@ -1157,30 +1178,38 @@ $total_coh = $con->query("SELECT COUNT(*) AS total FROM coh")->fetch_assoc()['to
         document.getElementById('total_week_coh').textContent = data.total_week_coh;
         document.getElementById('total_month_coh').textContent = data.total_month_coh;
 
+        document.getElementById('total_today_burial').textContent = data.total_today_burial;
+        document.getElementById('total_week_burial').textContent = data.total_week_burial;
+        document.getElementById('total_month_burial').textContent = data.total_month_burial;
+
         // Update the chart data
         scheduleChart.data.datasets[0].data = [
           data.total_today_bap,
           data.total_today_conf,
           data.total_today_wed,
-          data.total_today_coh
+          data.total_today_coh,
+          data.total_today_burial
         ];
         scheduleChart.data.datasets[1].data = [
           data.total_week_bap,
           data.total_week_conf,
           data.total_week_wed,
-          data.total_week_coh
+          data.total_week_coh,
+          data.total_week_burial
         ];
         scheduleChart.data.datasets[2].data = [
           data.total_month_bap,
           data.total_month_conf,
           data.total_month_wed,
-          data.total_month_coh
+          data.total_month_coh,
+          data.total_month_burial
         ];
         scheduleChart.data.datasets[3].data = [
           data.total_bap,
           data.total_conf,
           data.total_wed,
-          data.total_coh
+          data.total_coh,
+          data.total_burial
         ];
 
         // Refresh the chart

@@ -131,6 +131,21 @@ $cohnew_count = $jsonCounts['coh.json'];
                                 <li><a href="ccoh">CANCEL</a></li>
                             </ul>
                         </li>
+                        
+                        <!-- Burial Submenu -->
+                        <li class="submenu-dropdown">
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#burial">
+                                <img src="https://img.icons8.com/ios-filled/25/ffffff/cemetery.png" alt="Burial Icon" width="25" height="25">
+                                <span>Burial</span>
+                                <i class="ti-plus pull-right"></i>
+                            </a>
+                            <ul id="burial" class="collapse">
+                                <li><a href="burial">NEW</a></li>
+                                <li><a href="aburial">APPROVED</a></li>
+                                <li><a href="dburial">DECLINED</a></li>
+                                <li><a href="cburial">CANCEL</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
 
@@ -152,6 +167,7 @@ $cohnew_count = $jsonCounts['coh.json'];
                         <li><a href="weddinReport"><img src="https://img.icons8.com/ios-filled/20/ffffff/timeline.png" alt="Icon" width="20" height="20"> Wedding History</a></li>
                         <li><a href="confirmationReports"><img src="https://img.icons8.com/ios-filled/20/ffffff/timeline.png" alt="Icon" width="20" height="20"> Confirmation History</a></li>
                         <li><a href="cohReports"><img src="https://img.icons8.com/ios-filled/20/ffffff/timeline.png" alt="Icon" width="20" height="20"> Car or House History</a></li>
+                        <li><a href="burialReports"><img src="https://img.icons8.com/ios-filled/20/ffffff/timeline.png" alt="Icon" width="20" height="20"> Burial History</a></li>
                     </ul>
                 </li>
             <?php } ?>
@@ -180,6 +196,12 @@ $cohnew_count = $jsonCounts['coh.json'];
                     <a href="coh">
                         <img src="https://stveronicassf.com/wp-content/uploads/2021/05/icon-car-blessed.png" alt="Car/House Icon" width="20" height="20">
                         <span>Car Or House</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="burial">
+                        <img src="https://img.icons8.com/ios-filled/25/ffffff/cemetery.png" alt="Car/House Icon" width="20" height="20">
+                        <span>Burial</span>
                     </a>
                 </li>
             <?php } ?>
