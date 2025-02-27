@@ -236,7 +236,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="content-wrapper">
                 <div class="page-title">
-                <h1>Burial Management</h1>
+                <h1>Approved Burial Management</h1>
                 <?php if(!empty($status)) echo $status; ?>
                 </div>
 
@@ -244,7 +244,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="col-md-12">
                     <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Burial Records</h4>
+                        <h4 class="card-title">Approved Burial Records</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -270,12 +270,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                         if ($user_rank == 'normal') {
                             $uname = $t['user_name']; // Initialize $uname with the logged-in user's name
-                            $query = mysqli_query($con, "SELECT * FROM burial WHERE uname = '$uname'");
+                            $query = mysqli_query($con, "SELECT * FROM burial WHERE uname = '$uname' AND status='2'");
                         } elseif ($user_rank == 'superadmin') {
                             // Check if the status column exists
                             $check_column = mysqli_query($con, "SHOW COLUMNS FROM burial LIKE 'status'");
                             if(mysqli_num_rows($check_column) > 0) {
-                            $query = mysqli_query($con, "SELECT * FROM burial WHERE status='0'");
+                            $query = mysqli_query($con, "SELECT * FROM burial WHERE status='2'");
                             } else {
                             $query = mysqli_query($con, "SELECT * FROM burial");
                             }
@@ -326,76 +326,77 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <td><?php echo $formattedDatesched; ?></td>
                                 <td><?php echo htmlspecialchars($address); ?></td>
                                 <td><?php echo $phone; ?></td>
-                                <th>Presiding Priest to be added</th>
-                                <td><?php echo $statusText; ?></td>
-                                <td>Date Aprroved to be added</td>
-                                <td>
+                                <td>To be added</td>
+                                <td width="5%"><?php echo $statusText; ?></td>
+                                <td>upcoming function</td>
+                                <td width="7%">
                                     <div class="custom-dropdown">
-                                        <button onclick="toggleDropdown(this)" class="dropbtn">Action</button>
-                                        <?php if ($user_rank == 'superadmin' && $status == 0): ?>
-                                        <div class="dropdown-content">
-                                            <a href="#" onclick="openapproved('<?php echo $id; ?>')">Approve</a>
-                                            <a href="#" onclick="opendeclined('<?php echo $id; ?>')">Decline</a>
-                                            <a href="#" onclick="opencancel('<?php echo $id; ?>')">Cancel</a>
+                                            <button onclick="toggleDropdown(this)" class="dropbtn">Action</button>
+                                            <?php if ($user_rank == 'superadmin' && $status == 2): ?>
+                                            <div class="dropdown-content">
+                                                <a href="#" onclick="openapproved('<?php echo $id; ?>')">Approve</a>
+                                                <!-- <a href="#" onclick="opendeclined('<?php echo $id; ?>')">Decline</a> -->
+                                                <a href="#" onclick="opencancel('<?php echo $id; ?>')">Cancel</a>
+                                            </div>
+                                            <?php endif; ?>
                                         </div>
-                                        <?php endif; ?>
-                                    </div>
-                                    <style>
-                                    .custom-dropdown {
-                                        position: relative;
-                                        display: inline-block;
-                                    }
-                                    .dropbtn {
-                                        background-color: #28a745;
-                                        color: white;
-                                        padding: 6px 12px;
-                                        border: none;
-                                        border-radius: 4px;
-                                        cursor: pointer;
-                                    }
-                                    .dropdown-content {
-                                        display: none;
-                                        position: absolute;
-                                        background-color: #f9f9f9;
-                                        min-width: 80px;
-                                        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                                        z-index: 1;
-                                    }
-                                    .dropdown-content a {
-                                        color: black;
-                                        padding: 8px 12px;
-                                        text-decoration: none;
-                                        display: block;
-                                    }
-                                    .dropdown-content a:hover {
-                                        background-color: #f1f1f1;
-                                    }
-                                    .show {
-                                        display: block;
-                                    }
-                                    </style>
-                                    <script>
-                                    function toggleDropdown(btn) {
-                                        btn.nextElementSibling.classList.toggle("show");
-                                    }
-                                    window.onclick = function(event) {
-                                        if (!event.target.matches('.dropbtn')) {
-                                            var dropdowns = document.getElementsByClassName("dropdown-content");
-                                            for (var i = 0; i < dropdowns.length; i++) {
-                                                var openDropdown = dropdowns[i];
-                                                if (openDropdown.classList.contains('show')) {
-                                                    openDropdown.classList.remove('show');
+                                        <style>
+                                        .custom-dropdown {
+                                            position: relative;
+                                            display: inline-block;
+                                            color: #090909
+                                        }
+                                        .dropbtn {
+                                            background-color: #28a745;
+                                            color: white;
+                                            padding: 6px 12px;
+                                            border: none;
+                                            border-radius: 4px;
+                                            cursor: pointer;
+                                        }
+                                        .dropdown-content {
+                                            display: none;
+                                            position: absolute;
+                                            background-color: #f9f9f9;
+                                            min-width: 80px;
+                                            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                                            z-index: 1;
+                                        }
+                                        .dropdown-content a {
+                                            color: black;
+                                            padding: 8px 12px;
+                                            text-decoration: none;
+                                            display: block;
+                                        }
+                                        .dropdown-content a:hover {
+                                            background-color:rgb(213, 255, 207);
+                                        }
+                                        .show {
+                                            display: block;
+                                        }
+                                        </style>
+                                        <script>
+                                        function toggleDropdown(btn) {
+                                            btn.nextElementSibling.classList.toggle("show");
+                                        }
+                                        window.onclick = function(event) {
+                                            if (!event.target.matches('.dropbtn')) {
+                                                var dropdowns = document.getElementsByClassName("dropdown-content");
+                                                for (var i = 0; i < dropdowns.length; i++) {
+                                                    var openDropdown = dropdowns[i];
+                                                    if (openDropdown.classList.contains('show')) {
+                                                        openDropdown.classList.remove('show');
+                                                    }
                                                 }
                                             }
                                         }
-                                    }
-                                    </script>
+                                        </script>
                                 </td>
                             </tr>
                         <?php
                             }
                         } else {
-                            echo '<tr><td colspan="6">No records found.</td></tr>';
+                            echo '<tr><td colspan="9">No records found.</td></tr>';
                         }
                         ?>
                     </div>
